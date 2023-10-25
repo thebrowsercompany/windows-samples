@@ -1,0 +1,15 @@
+
+# Downloaded or built binaries
+build
+build-debug
+_build
+.build
+.packages
+*.vs
+
+Generated Files
+generated
+CMakeFiles
+*.nupkg
+packages.override.config
+Arc Setup.back.aip

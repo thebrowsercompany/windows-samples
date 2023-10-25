@@ -1,0 +1,5 @@
+module CWinAppSDK {
+  header "../../Headers/CWinAppSDK-Bridging-Header.h"
+  link "Microsoft.WindowsAppRuntime.Bootstrap"
+  export *
+}

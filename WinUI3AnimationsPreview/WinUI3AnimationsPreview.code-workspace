@@ -1,0 +1,117 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Shared"
+		},
+		{
+			"path": "../cmake"
+		},
+		{
+			"path": "../nuget"
+		},
+		{
+			"path": "../build"
+		}
+	],
+	"settings": {
+		"cmake.autoSelectActiveFolder": false,
+		"cmake.ignoreCMakeListsMissing": true,
+		"swift.autoGenerateLaunchConfigurations": false,
+		"swift.disableAutoResolve": true
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "lldb",
+				"request": "launch",
+				"name": "WinUI3AnimationsPreview",
+				"program": "${workspaceFolder}/../build/bin/WinUI3AnimationsPreview",
+				"args": [],
+				"cwd": "${workspaceFolder}",
+				"preLaunchTask": "Build"
+			}
+		],
+		"compounds": []
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"type": "cmake",
+				"label": "Build",
+				"command": "build",
+				"targets": [
+					"all"
+				],
+				"problemMatcher": "$swiftc",
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+				"detail": "Build for selected configuration",
+				"dependsOn": "Configure"
+			},
+			{
+				"type": "cmake",
+				"label": "Clean Build",
+				"command": "build",
+				"problemMatcher": "$swiftc",
+				"targets": [
+					"all"
+				],
+				"group": "build",
+				"detail": "Clean build for selected configuration",
+				"dependsOrder": "sequence",
+				"dependsOn": [
+					"Clean",
+					"Configure"
+				]
+			},
+			{
+				"type": "cmake",
+				"label": "Clean",
+				"command": "clean",
+				"problemMatcher": [],
+				"detail": "Clean project for selected configuration"
+			},
+			{
+				"type": "cmake",
+				"label": "Configure",
+				"command": "configure",
+				"problemMatcher": [],
+				"detail": "Re-run CMake configure step (NuGet, MIDL, SwiftWinRT)"
+			},
+			{
+				"type": "shell",
+				"label": "kill lsp",
+				"command": "taskkill /im sourcekit-lsp.exe /f",
+				"problemMatcher": [],
+			},
+			{
+				"type": "swift",
+				"args": [
+					"package",
+					"resolve"
+				],
+				"cwd": ".",
+				"problemMatcher": [],
+				"label": "swift: Resolve Package Dependencies",
+				"detail": "swift package resolve",
+			},
+			{
+				"type": "shell",
+				"label": "windbg",
+				"command": "windbgx",
+				"problemMatcher": [],
+				"args": [
+					"-g",
+					"${workspaceFolder}/build/bin/${workspaceFolderBasename}.exe",
+				]
+			},
+		]
+	}
+}
