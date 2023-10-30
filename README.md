@@ -1,6 +1,6 @@
 # Swift on Windows Samples Apps
 
-Sample apps for Swift on Windows, showcasing
+Sample apps for Swift on Windows, showcasing how to build Windows Apps using the [Windows App SDK](https://github.com/microsoft/windowsappsdk) through the [Swift/WinRT](https://github.com/thebrowsercompany/swift-winrt) language projection.
 
 ## Setup
 
@@ -19,7 +19,7 @@ If you choose to use Visual Studio Code, you'll need to install these extensions
 
 ## Building
 
-The build of the Windows applications is done through a combination of CMake and SPM. The CMake portion of the build handles tasks that SPM currently doesn't support. The CMake `configure` step is responsible for restoring NuGet packages and generarting the Swift/WinRT bindings.
+The build of the Windows applications is done through a combination of CMake and SPM. The CMake portion of the build handles tasks that SPM currently doesn't support. The CMake `configure` step is responsible for restoring NuGet packages and generating the Swift/WinRT bindings.
 
 Each sample application has it's own top-level directory in this repo. You can open the corresponding `.code-workspace` file in VSCode for the sample and build using `Terminal->Run Build Task...` or by pressing `Ctrl+Shift+B`.
 
