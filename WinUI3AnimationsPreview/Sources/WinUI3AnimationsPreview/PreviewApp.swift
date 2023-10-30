@@ -3,6 +3,7 @@ import UWP
 import WinAppSDK
 import WindowsFoundation
 import WinUI
+@_spi(WinRTImplements) import WindowsFoundation
 
 public class PreviewApp: Application {
     lazy var m_window: Window = .init()
@@ -17,6 +18,7 @@ public class PreviewApp: Application {
 
     override public func onLaunched(_ args: WinUI.LaunchActivatedEventArgs?) throws {
         resources.mergedDictionaries.append(XamlControlsResources())
+
         try m_window.activate()
 
         let animatableButton = Button()
@@ -42,13 +44,9 @@ public class PreviewApp: Application {
         panel.orientation = .vertical
         panel.spacing = 10
         panel.horizontalAlignment = .center
-        panel.horizontalAlignment = .center
+        panel.verticalAlignment = .center
         panel.children.append(animatableButton)
         m_window.content = panel
-
-        animatableButton.click.addHandler { [weak self] _, _ in
-
-        }
     }
 
     lazy var compositor: WinAppSDK.Compositor = WinUI.CompositionTarget.getCompositorForCurrentThread()
@@ -57,7 +55,7 @@ public class PreviewApp: Application {
         let animation: WinAppSDK.SpringVector3NaturalMotionAnimation = try! compositor.createSpringVector3Animation()
         animation.target = "Scale"
         animation.dampingRatio = 0.6
-        animation.period = TimeSpan(duration: 50000)
+        animation.period = TimeSpan(duration: 500000)
         return animation
     }()
 
@@ -75,5 +73,15 @@ public class PreviewApp: Application {
         // swiftlint:disable:next force_cast
         let senderAsUElement = sender as! UIElement
         try? senderAsUElement.startAnimation(springAnimation)
+    }
+
+    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+        case __ABI_Microsoft_UI_Xaml_Markup.IXamlMetadataProviderWrapper.IID:
+            let ixmp = __ABI_Microsoft_UI_Xaml_Markup.IXamlMetadataProviderWrapper(self)
+            return ixmp?.queryInterface(iid)
+        default:
+            return super.queryInterface(iid)
+        }
     }
 }

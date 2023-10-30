@@ -6,8 +6,8 @@ if("${REPO_ROOT}" STREQUAL "")
   message(FATAL_ERROR "REPO_ROOT must be set before including WinRTPreBuild")
 endif()
 
-set(SWIFTWINRT_OUTPUT_DIR ${GENERATED_FILES_DIR}/Frameworks/WinRT)
-set(FRAMEWORKS_WINRT_DIR ${REPO_ROOT}/Frameworks/WinRT)
+set(SWIFTWINRT_OUTPUT_DIR ${GENERATED_FILES_DIR}/Shared/WinRT)
+set(FRAMEWORKS_WINRT_DIR ${REPO_ROOT}/Shared/WinRT)
 if(${CMAKE_VERSION} VERSION_LESS "3.26.0")
   # Required for copy_directory_if_different.
   message(FATAL_ERROR "CMake 3.26.0 or later is required, please install the latest via: winget install Kitware.CMake. You will need to delete the build directory after updating cmake.")
