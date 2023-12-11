@@ -5,7 +5,7 @@ Sample apps for Swift on Windows, showcasing how to build Windows Apps using the
 ## Setup
 
 ### Requirements
-1. Install latest Swift SDK from https://www.swift.org/download/
+1. Install latest Swift SDK from [thebrowsercompany/swift-build](https://github.com/thebrowsercompany/swift-build/releases)
 2. Install latest CMake: `winget install --id Kitware.CMake`
 3. Windows SDK 10.0.20348.0: https://go.microsoft.com/fwlink/?linkid=2164145
 4. Visual Studio Community with C++ build tools
