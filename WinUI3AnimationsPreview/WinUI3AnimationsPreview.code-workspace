@@ -1,7 +1,8 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".",
+			"name": "WinUI3AnimationsPreview"
 		},
 		{
 			"path": "../Shared"
@@ -29,9 +30,9 @@
 				"type": "lldb",
 				"request": "launch",
 				"name": "WinUI3AnimationsPreview",
-				"program": "${workspaceFolder}/../build/bin/WinUI3AnimationsPreview",
+				"program": "${workspaceFolder:WinUI3AnimationsPreview}/../build/bin/WinUI3AnimationsPreview",
 				"args": [],
-				"cwd": "${workspaceFolder}",
+				"cwd": "${workspaceFolder:WinUI3AnimationsPreview}",
 				"preLaunchTask": "Build"
 			}
 		],
