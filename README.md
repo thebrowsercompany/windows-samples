@@ -15,6 +15,10 @@ VSCode is the editor of choice for developing Windows apps on Swift. You can ins
 If you choose to use Visual Studio Code, you'll need to install these extensions:
 - [Swift VSCode Extension](https://marketplace.visualstudio.com/items?itemName=sswg.swift-lang)
 
+### Windows App Runtime
+
+Make sure to have the appropriate version of the Windows App Runtime installed as mentioned [here](https://github.com/thebrowsercompany/swift-windowsappsdk?tab=readme-ov-file#using-windows-app-sdk)
+
 ## Building
 
 The build of the Windows applications is done through SPM. This can be done on the command line with `swift build` or in Visual Studio Code with `Ctrl+Shift+B`.
