@@ -6,11 +6,11 @@
             "sourceLanguages": [
                 "swift"
             ],
-            "name": "Debug WinUI3AnimationsPreview (WinUI3AnimationsPreview)",
-            "program": "${workspaceFolder:winrt-samples}\\WinUI3AnimationsPreview\\.build/debug/WinUI3AnimationsPreview",
             "args": [],
-            "cwd": "${workspaceFolder:winrt-samples}/WinUI3AnimationsPreview",
-            "preLaunchTask": "swift: Build Debug WinUI3AnimationsPreview (WinUI3AnimationsPreview)"
+            "cwd": "${workspaceFolder:windows-samples}",
+            "name": "Debug WinUI3AnimationsPreview",
+            "program": "${workspaceFolder:windows-samples}\\.build\\debug\\WinUI3AnimationsPreview.exe",
+            "preLaunchTask": "swift: Build Debug WinUI3AnimationsPreview"
         },
         {
             "type": "swift-lldb",
@@ -18,11 +18,11 @@
             "sourceLanguages": [
                 "swift"
             ],
-            "name": "Release WinUI3AnimationsPreview (WinUI3AnimationsPreview)",
-            "program": "${workspaceFolder:winrt-samples}\\WinUI3AnimationsPreview\\.build/release/WinUI3AnimationsPreview",
             "args": [],
-            "cwd": "${workspaceFolder:winrt-samples}/WinUI3AnimationsPreview",
-            "preLaunchTask": "swift: Build Release WinUI3AnimationsPreview (WinUI3AnimationsPreview)"
+            "cwd": "${workspaceFolder:windows-samples}",
+            "name": "Release WinUI3AnimationsPreview",
+            "program": "${workspaceFolder:windows-samples}\\.build\\release\\WinUI3AnimationsPreview.exe",
+            "preLaunchTask": "swift: Build Release WinUI3AnimationsPreview"
         }
     ]
 }

@@ -3,12 +3,12 @@ import UWP
 import WinAppSDK
 import WindowsFoundation
 import WinUI
-@_spi(WinRTImplements) import WindowsFoundation
 
-public class PreviewApp: Application {
+@main
+public class PreviewApp: SwiftApplication {
     lazy var m_window: Window = .init()
 
-    override public init() {
+    public required init() {
         super.init()
         m_window.title = "WinUI3AnimationsPreview"
         unhandledException.addHandler { (_, args:UnhandledExceptionEventArgs!) in
@@ -16,10 +16,8 @@ public class PreviewApp: Application {
         }
     }
 
-    override public func onLaunched(_ args: WinUI.LaunchActivatedEventArgs?) throws {
-        resources.mergedDictionaries.append(XamlControlsResources())
-
-        try m_window.activate()
+    override public func onLaunched(_ args: WinUI.LaunchActivatedEventArgs) {
+        try! m_window.activate()
 
         let animatableButton = Button()
         animatableButton.content = "Hello World"
@@ -73,15 +71,5 @@ public class PreviewApp: Application {
         // swiftlint:disable:next force_cast
         let senderAsUElement = sender as! UIElement
         try? senderAsUElement.startAnimation(springAnimation)
-    }
-
-    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
-        switch iid {
-        case __ABI_Microsoft_UI_Xaml_Markup.IXamlMetadataProviderWrapper.IID:
-            let ixmp = __ABI_Microsoft_UI_Xaml_Markup.IXamlMetadataProviderWrapper(self)
-            return ixmp?.queryInterface(iid)
-        default:
-            return super.queryInterface(iid)
-        }
     }
 }
