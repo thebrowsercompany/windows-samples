@@ -10,6 +10,4 @@ DerivedData/
 build
 *.build
 *.nupkg
-
-# Generated WinRT bindings
-Shared/WinRT
+Package.resolved

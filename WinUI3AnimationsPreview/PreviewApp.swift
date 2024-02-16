@@ -3,23 +3,30 @@ import UWP
 import WinAppSDK
 import WindowsFoundation
 import WinUI
-@_spi(WinRTImplements) import WindowsFoundation
 
-public class PreviewApp: Application {
-    lazy var m_window: Window = .init()
-
-    override public init() {
+@main
+public class PreviewApp: SwiftApplication {
+    /// A required initializer for the application. Non-UI setup for your application can be done here.
+    /// Subscribing to unhandledException is a good place to handle any unhandled exceptions that may occur
+    /// in your application.
+    public required init() {
         super.init()
-        m_window.title = "WinUI3AnimationsPreview"
         unhandledException.addHandler { (_, args:UnhandledExceptionEventArgs!) in
             print("Unhandled exception: \(args.message)")
         }
     }
 
-    override public func onLaunched(_ args: WinUI.LaunchActivatedEventArgs?) throws {
-        resources.mergedDictionaries.append(XamlControlsResources())
+    /// onShutdown is called once Application.start returns. This is a good place to do any cleanup
+    /// that is necessary for your application before it terminates.
+    override public func onShutdown() {    }
 
-        try m_window.activate()
+    /// onLaunched is called when the application is launched. This is the main entry point for your
+    /// application and when you can create a window and display UI.s
+    override public func onLaunched(_ args: WinUI.LaunchActivatedEventArgs) {
+        let window = Window()
+        window.title = "WinUI3AnimationsPreview"
+
+        try! window.activate()
 
         let animatableButton = Button()
         animatableButton.content = "Hello World"
@@ -46,7 +53,7 @@ public class PreviewApp: Application {
         panel.horizontalAlignment = .center
         panel.verticalAlignment = .center
         panel.children.append(animatableButton)
-        m_window.content = panel
+        window.content = panel
     }
 
     lazy var compositor: WinAppSDK.Compositor = WinUI.CompositionTarget.getCompositorForCurrentThread()
@@ -73,15 +80,5 @@ public class PreviewApp: Application {
         // swiftlint:disable:next force_cast
         let senderAsUElement = sender as! UIElement
         try? senderAsUElement.startAnimation(springAnimation)
-    }
-
-    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
-        switch iid {
-        case __ABI_Microsoft_UI_Xaml_Markup.IXamlMetadataProviderWrapper.IID:
-            let ixmp = __ABI_Microsoft_UI_Xaml_Markup.IXamlMetadataProviderWrapper(self)
-            return ixmp?.queryInterface(iid)
-        default:
-            return super.queryInterface(iid)
-        }
     }
 }

@@ -8,31 +8,26 @@ let GUILinkerSettings: [LinkerSetting] = [
     // for debug/release
     .unsafeFlags(["-Xlinker", "/ENTRY:mainCRTStartup"], .when(configuration: .release)),
 ]
+
 let package = Package(
-    name: "WinUI3AnimationsPreview",
+    name: "windows-samples",
     products: [
         .executable(name: "WinUI3AnimationsPreview", targets: ["WinUI3AnimationsPreview"]),
     ],
     dependencies: [
-        .package(path: "../Shared/CWinAppSDK"),
-        .package(path: "../Shared/WinRT/Sources/UWP"),
-        .package(path: "../Shared/WinRT/Sources/WinAppSDK"),
-        .package(path: "../Shared/WinRT/Sources/WindowsFoundation"),
-        .package(path: "../Shared/WinRT/Sources/WinUI"),
+        .package(url: "https://github.com/thebrowsercompany/swift-windowsappsdk", branch: "main"),
+        .package(url: "https://github.com/thebrowsercompany/swift-windowsfoundation", branch: "main"),
+        .package(url: "https://github.com/thebrowsercompany/swift-winui", branch: "main"),
     ],
     targets: [
         .executableTarget(
             name: "WinUI3AnimationsPreview",
             dependencies: [
-                "CWinAppSDK",
-                "UWP",
-                "WinAppSDK",
-                "WindowsFoundation",
-                "WinUI"
+                .product(name: "WinUI", package: "swift-winui"),
+                .product(name: "WinAppSDK", package: "swift-windowsappsdk"),
+                .product(name: "WindowsFoundation", package: "swift-windowsfoundation"),
             ],
-            exclude: [
-                "WinUI3AnimationsPreview.exe.manifest",
-            ],
+            path:"WinUI3AnimationsPreview",
             linkerSettings: GUILinkerSettings
         ),
     ]
