@@ -6,18 +6,27 @@ import WinUI
 
 @main
 public class PreviewApp: SwiftApplication {
-    lazy var m_window: Window = .init()
-
+    /// A required initializer for the application. Non-UI setup for your application can be done here.
+    /// Subscribing to unhandledException is a good place to handle any unhandled exceptions that may occur
+    /// in your application.
     public required init() {
         super.init()
-        m_window.title = "WinUI3AnimationsPreview"
         unhandledException.addHandler { (_, args:UnhandledExceptionEventArgs!) in
             print("Unhandled exception: \(args.message)")
         }
     }
 
+    /// onShutdown is called once Application.start returns. This is a good place to do any cleanup
+    /// that is necessary for your application before it terminates.
+    override public func onShutdown() {    }
+
+    /// onLaunched is called when the application is launched. This is the main entry point for your
+    /// application and when you can create a window and display UI.s
     override public func onLaunched(_ args: WinUI.LaunchActivatedEventArgs) {
-        try! m_window.activate()
+        let window = Window()
+        window.title = "WinUI3AnimationsPreview"
+
+        try! window.activate()
 
         let animatableButton = Button()
         animatableButton.content = "Hello World"
@@ -44,7 +53,7 @@ public class PreviewApp: SwiftApplication {
         panel.horizontalAlignment = .center
         panel.verticalAlignment = .center
         panel.children.append(animatableButton)
-        m_window.content = panel
+        window.content = panel
     }
 
     lazy var compositor: WinAppSDK.Compositor = WinUI.CompositionTarget.getCompositorForCurrentThread()

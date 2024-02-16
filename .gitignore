@@ -10,3 +10,4 @@ DerivedData/
 build
 *.build
 *.nupkg
+Package.resolved
